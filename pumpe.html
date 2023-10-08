@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="site.css" type="text/css"/>
+    <title>Pumpe</title>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="pumpe.html">Pumpe</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside><img src="https://allpumps.com.au/wp-content/uploads/2022/12/grundfos-logo.jpg" alt="Centrifugal Pump"></aside>
+        <article>
+            <h1>Pumpe</h1>
+          <section class="columns-desktop">
+           <div class="pumpa">
+            <img src="https://ba.bombasubmersivel.net/uploads/202311926/small/high-flow-1hp-single-stage-surfacea61d92a9-bf80-407a-90ed-9f2b6182d57f.jpg" alt="Horizontalna pumpa">
+             <div class="columns">
+                <div class="title">Horizontalna pumpa</div>
+                <div class="price">2536 KM</div>
+               </div>
+               <p class="desc"> Naša horizontalna jednostupanjska pumpa</p>
+               <button data-order="horizontalna-pumpa">Naruči</button>
+           </div>
+           <div class="pumpa">
+            <img src="https://www.pumpe.hr/images/stories/pumps/cm.png" alt="Centrifugalna vodena pumpa za kućnu upotrebu">
+             <div class="columns">
+                <div class="title">Centrifugalna vodena pumpa za kućnu upotrebu</div>
+                <div class="price">1450 KM</div>
+              </div>
+              <p class="desc">Samo za kućnu upotrebu</p>
+              <button data-order="centrifugalna-pumpa-za-kućnu-upotrebu">Naruči</button>
+           </div>
+          </section>  
+        </article>
+
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="pumpe.html">Pumpe</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </footer>
+    
+</body>
+<script>
+    window.addEventListener("DOMContentLoaded", function(e){
+        const naručiButtons = document.querySelectorAll("button[data-order]");
+        naručiButtons.forEach(function(button) {
+            button.addEventListener("click", function(e) {
+            const button = e.currentTarget;
+            const container = button.parentNode;
+            const naruči = {
+                id: button.getAttribute("data-order"),
+                title: container.querySelector(".title").innerText,
+                price: container.querySelector(".price").innerText,
+                desc: container.querySelector(".desc").innerText
+            };
+            localStorage.setItem("naruči", JSON.stringify(naruči));
+            const url = window.location.href.replace("pumpe.html", "order.html");
+            window.location.href = url;
+            });
+
+        });
+    });
+</script>
+</html>
