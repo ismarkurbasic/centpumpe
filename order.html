@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="site.css" type="text/css"/>
+    <style>
+
+        @media only screen and (min-width: 768px) {
+            article {
+                width: 350px;
+            }
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            padding: 10px;
+            border: solid 1px #999;
+            border-radius: 2px;
+            width: 100%;
+        }
+        label {
+            font-weight: 600;
+        }
+        input[type="reset"] {
+            background: transparent;
+            border: 0;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            border: solid 1px #999;
+            border-radius: 3px;
+            padding: 10px;
+        }
+    </style>
+    </head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="pumpe.html">Pumpe</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside><img src="https://allpumps.com.au/wp-content/uploads/2022/12/grundfos-logo.jpg" alt="Centrifugal Pump"></aside>
+        <article>
+            <h1>Naruči</h1>
+            <div class="pumpa">
+                <img src="" />
+                <div class="columns">
+                    <div class="title"></div>
+                    <div class="price"></div>
+                   </div>
+                   <p class="desc"></p>
+            </div>
+            <form action="http://localhost:7071/api/post" method="POST">
+                <input type="hidden" id="pump-order" name="pump-order">
+
+                <div class="input-group">
+                    <div><label for="ime">Ime</label></div>
+                    <div><input type="text" name="ime" id="ime"/></div>
+                   </div>
+                   <div class="input-group">
+                    <div><label for="prezime">Prezime</label></div>
+                    <div><input type="text" name="prezime" id="prezime"/></div>
+                  </div>
+                  <div class="input-group">
+                    <div><label for="adresa">Adresa</label></div>
+                    <div><input type="text" name="adresa" id="adresa"/></div>
+                    </div>
+                    <div class="input-group">
+                        <div><label for="država">Država</label></div>
+                        <div>
+                            <select name="država" id="država">
+                                <option value="" selected>[ Select one ]</option>
+                                <option value="Alabama">Alabama</option>
+                                <option value="Alaska">Alaska</option>
+                                <option value="Arizona">Arizona</option>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div><label for="poštanski-broj">Poštanski broj</label></div>
+                        <div><input type ="text" name ="poštanski-broj" id="poštanski-broj"/></div>
+                    </div>
+                    <div class="input-group">
+                        <div><label for="komentari">Komentari</label></div>
+                       <div>
+                        <textarea
+                        name="komentari"
+                        id="komentari"
+                        cols="30"
+                        rows="10"
+                        ></textarea>
+                       </div>
+                    </div>
+                    <input type="reset" value="Reset"/>
+                    <input type="submit" value="Naruči"/>
+
+
+
+            </form>
+            
+        </article>
+
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="pumpe.html">Pumpe</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </footer>
+    
+</body>
+<script>
+    window.addEventListener("DOMContentLoaded", function(e) {
+     
+        const naruči = localStorage.getItem("naruči");
+     
+        if (naruči) {
+        const pumpOrder = JSON.parse(naruči);
+
+        const orderInput = document.querySelector("#pump-order");
+         orderInput.value = naruči;
+        
+        const pumpa = document.querySelector(".pumpa");
+        
+        const title = pumpa.querySelector(".title");
+        const price = pumpa.querySelector(".price");
+        const desc = pumpa.querySelector(".desc");
+        
+        title.innerText = pumpOrder.title;
+        price.innerText = pumpOrder.price;
+        desc.innerText = pumpOrder.desc;
+        
+        const img = pumpa.querySelector("img");
+        img.setAttribute("src", `https://ba.bombasubmersivel.net/uploads/202311926/small/high-flow-1hp-single-stage-surfacea61d92a9-bf80-407a-90ed-9f2b6182d57f.jpg`);
+        img.setAttribute("alt", pumpOrder.title);
+     }
+    });
+</script>
+</html>
